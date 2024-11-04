@@ -7,11 +7,9 @@ PORT = 12345
 def handle_client(client_socket, other_client_socket):
     while True:
         try:
-            # Receive message from client
             message = client_socket.recv(1024).decode('utf-8')
             if message:
                 print(f"Received: {message}")
-                # Send message to the other client
                 other_client_socket.send(message.encode('utf-8'))
             else:
                 break
