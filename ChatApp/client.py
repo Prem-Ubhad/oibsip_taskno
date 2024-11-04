@@ -1,11 +1,9 @@
 import socket
 import threading
 
-# Server configuration
-HOST = '127.0.0.1'  # Server's IP address (local)
-PORT = 12345        # Must match the server's port
+HOST = '127.0.0.1'  
+PORT = 12345        
 
-# Function to receive messages from the server
 def receive_messages(client_socket):
     while True:
         try:
@@ -23,10 +21,8 @@ def main():
 
     print("Connected to the server. Start typing your messages.")
 
-    # Start a thread to receive messages
     threading.Thread(target=receive_messages, args=(client,)).start()
 
-    # Main loop to send messages
     while True:
         message = input()
         if message.lower() == 'exit':
