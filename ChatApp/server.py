@@ -1,11 +1,9 @@
 import socket
 import threading
 
-# Server configuration
-HOST = '127.0.0.1'  # Localhost
-PORT = 12345        # Arbitrary non-privileged port
+HOST = '127.0.0.1'  
+PORT = 12345        
 
-# Client handling function
 def handle_client(client_socket, other_client_socket):
     while True:
         try:
@@ -28,7 +26,6 @@ def main():
     server.listen(2)
     print("Server is listening for connections...")
 
-    # Accept connections from two clients
     client1, addr1 = server.accept()
     print(f"Connected to {addr1}")
     client1.send("You are connected. Waiting for the other user...".encode('utf-8'))
@@ -38,7 +35,6 @@ def main():
     client2.send("You are connected. Start chatting!".encode('utf-8'))
     client1.send("Both users connected. Start chatting!".encode('utf-8'))
 
-    # Create threads to handle each client
     threading.Thread(target=handle_client, args=(client1, client2)).start()
     threading.Thread(target=handle_client, args=(client2, client1)).start()
 
